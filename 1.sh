@@ -4,3 +4,4 @@
 #this is a comment and it wont get executed
 #pwd
 ls
+ls -ltr
