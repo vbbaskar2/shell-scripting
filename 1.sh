@@ -5,3 +5,5 @@
 #pwd
 ls
 ls -al
+pwd
+
