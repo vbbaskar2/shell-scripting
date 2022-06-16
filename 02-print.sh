@@ -8,4 +8,4 @@ echo hello \n hello again
 
 #for suppose if i want to use escape sequences then i will be using ""
 # \n, \t
-echo "hello \n hello again"
+echo -e "hello\nhello again"
