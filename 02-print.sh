@@ -27,10 +27,12 @@ echo -e "\e[32m This is Green"
 echo -e "\e[33m This is Yellow"
 echo -e "\e[34m This is Blue"
 echo -e "\e[35m This is Magenta"
-echo -e "\e[36m This is Cyan\e[0m"
+echo -e "\e[36m This is Cyan"
+echo "hi"
+echo "hello"
 
 # basically the colors one set are enabled until we explicitly disable them.
-echo - " This is Normal"
+echo  " This is Normal"
 
 
 
