@@ -21,6 +21,7 @@ x=20
 y=30
 echo ${x}X${y} = 600
 
-DATE=17-06-2022
+#DATE=17-06-2022
+DATE=$(date +%F)
 echo Today date is $DATE.
 
