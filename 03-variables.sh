@@ -17,3 +17,7 @@ echo value of b is $b
 
 echo value of a is ${a}
 
+x=20
+y=30
+echo $xX$y = 600
+
