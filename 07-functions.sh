@@ -15,7 +15,7 @@ xyz(){
 }
 
 ##Main Program
-abc
+abc bhaskar
 echo exit status of abc is $?
 a=10
 echo a in Main program $a
