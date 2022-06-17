@@ -15,6 +15,7 @@ xyz(){
 
 ##Main Program
 abc
+echo exit status of abc is $?
 a=10
 echo a in Main program $a
 xyz
