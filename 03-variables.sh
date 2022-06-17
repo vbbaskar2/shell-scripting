@@ -19,5 +19,5 @@ echo value of a is ${a}
 
 x=20
 y=30
-echo $xX$y = 600
+echo ${x}X${y} = 600
 
