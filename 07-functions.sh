@@ -13,6 +13,6 @@ xyz(){
 
 ##Main Program
 abc
-#a=10
+a=10
 echo a in Main program $a
 xyz
