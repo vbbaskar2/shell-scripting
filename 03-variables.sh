@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ##if we assign a name to a set of data, then that is called as variable
+#SYNTAX: VAR=DATA
 
 #Number
 a=100
@@ -13,4 +14,6 @@ b=abc
 
 echo value of a is $a
 echo value of b is $b
+
+echo value of a is ${a}
 
