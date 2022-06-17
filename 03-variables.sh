@@ -21,7 +21,14 @@ x=20
 y=30
 echo ${x}X${y} = 600
 
+
+
 #DATE=17-06-2022
+#Command Substitution
 DATE=$(date +%F)
 echo Today date is $DATE.
+
+#Arthimatic substitution
+ADD=$((2+3+4+5*6))
+echo added = $ADD
 
