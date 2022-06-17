@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ls
-exit 20
+exit 1
 pwd
