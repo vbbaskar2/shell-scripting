@@ -32,3 +32,5 @@ echo Today date is $DATE.
 ADD=$((2+3+4+5*6))
 echo added = $ADD
 
+echo COURSE_NAME = $COURSE_NAME
+
