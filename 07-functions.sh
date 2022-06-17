@@ -5,6 +5,7 @@ function abc(){
   echo I am From function abc
   a=100
   echo a in function = $a
+  echo this is second time a = $a
 }
 
 xyz(){
