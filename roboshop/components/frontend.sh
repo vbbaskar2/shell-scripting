@@ -6,10 +6,15 @@ print(){
 
 print "Installing nginx"
 yum install nginx -y
-if[]
+if [ $? == 0 ]; then
+  "Nginx installed successfully"
+fi
 
 print "Enabling nginx"
 systemctl enable nginx
+if [ $? == 0 ]; then
+  "Nginx enabled successfully"
+fi
 
 print "Starting nginx"
 systemctl start nginx
