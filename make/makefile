@@ -1,5 +1,5 @@
 one:
-    @echo one
-two:
-    @echo two
+	echo "one"
 
+two:
+	echo "two"
