@@ -4,26 +4,31 @@ print(){
   echo -e  "\e[1m$1\e[0m"
 }
 
+stat(){
+    if [ "$1" == 0 ]; then
+    echo -e "Nginx installed successfully"
+    else
+    echo "Nginx installation is not completed"
+    fi
+}
+
 print "Installing nginx"
 yum install nginx -y
+stat $?
+
+
+print "Enabling nginx"
+systemctl enable nginx
 if [ $? == 0 ]; then
   echo -e "Nginx installed successfully"
   else
   echo "Nginx installation is not completed"
 fi
 
-exit 1
-
-print "Enabling nginx"
-systemctl enable nginx
-if [ $? == 0 ]; then
-  "Nginx enabled successfully"
-fi
-
 print "Starting nginx"
 systemctl start nginx
 
-
+exit 1
 
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
