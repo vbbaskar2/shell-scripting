@@ -19,14 +19,11 @@ stat $?
 
 print "Enabling nginx"
 systemctl enable nginx
-if [ $? == 0 ]; then
-  echo -e "Nginx installed successfully"
-  else
-  echo "Nginx installation is not completed"
-fi
+stat $?
 
 print "Starting nginx"
 systemctl start nginx
+stat $?
 
 exit 1
 
