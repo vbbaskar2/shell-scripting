@@ -1,4 +1,4 @@
-one: #### Target One
+help:
 	@grep '####' makefile | grep -v grep | sed -e 's/####//'
 
 one: #### Target One
