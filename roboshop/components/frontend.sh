@@ -7,8 +7,12 @@ print(){
 print "Installing nginx"
 yum install nginx -y
 if [ $? == 0 ]; then
-  "Nginx installed successfully"
+  echo -e "Nginx installed successfully"
+  else
+  echo "Nginx installation is not completed"
 fi
+
+exit 1
 
 print "Enabling nginx"
 systemctl enable nginx
@@ -19,7 +23,7 @@ fi
 print "Starting nginx"
 systemctl start nginx
 
-exit 1
+
 
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
