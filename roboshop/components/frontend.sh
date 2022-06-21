@@ -1,7 +1,15 @@
 #!/bin/bash
+
+echo "Installing Nignx"
 yum install nginx -y
+
+echo "Enabling Nginx"
 systemctl enable nginx
+
+echo "start nginx"
 systemctl start nginx
+
+exit 1
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 
