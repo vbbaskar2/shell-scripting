@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Installing Nignx"
+echo -e  "\e[1mInstalling Nignx\e[0m"
 yum install nginx -y
 
-echo "Enabling Nginx"
+echo -e  "\e[1m Enabling Nignx\e[0m"
 systemctl enable nginx
 
-echo "start nginx"
+echo -e  "\e[1m starting Nignx\e[0m"
 systemctl start nginx
 
 exit 1
