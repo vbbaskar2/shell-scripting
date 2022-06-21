@@ -6,7 +6,7 @@ print(){
 
 stat(){
     if [ "$1" == 0 ]; then
-    echo -e "Nginx installed successfully"
+    echo -e "nginx installation successfully"
     else
     echo "Nginx installation is not completed"
     fi
@@ -16,6 +16,7 @@ print "Installing nginx"
 yum install nginx -y
 stat $?
 
+exit 1
 
 print "Enabling nginx"
 systemctl enable nginx
@@ -25,7 +26,7 @@ print "Starting nginx"
 systemctl start nginx
 stat $?
 
-exit 1
+
 
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
