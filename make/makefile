@@ -1,3 +1,4 @@
+#!/bin/bash
 help:
 	@grep '####' makefile | grep -v grep | sed -e 's/####//'
 
