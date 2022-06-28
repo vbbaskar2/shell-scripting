@@ -32,3 +32,13 @@ cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
 stat $?
 
 
+print "Enabling nginx"
+systemctl enable nginx -y &>>$LOG
+stat $?
+
+print "Starting nginx"
+systemctl start nginx -y &>>$LOG
+stat $?
+
+
+
