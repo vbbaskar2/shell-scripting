@@ -33,6 +33,7 @@ echo -e "hello\e[0m"
 
 # basically the colors one set are enabled until we explicitly disable them.
 echo  "This is Normal"
+echo "This is also normal"
 
 
 
