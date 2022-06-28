@@ -16,8 +16,6 @@ print "Installing nginx"
 yum install nginx -y
 stat $?
 
-exit 1
-
 print "Enabling nginx"
 systemctl enable nginx
 stat $?
@@ -26,8 +24,7 @@ print "Starting nginx"
 systemctl start nginx
 stat $?
 
-
-
+exit 1
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 
