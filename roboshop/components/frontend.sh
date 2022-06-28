@@ -5,10 +5,10 @@ print(){
 }
 
 stat(){
-    if [ "$1" == 0 ]; then
-    echo -e "\e[32mnginx installation successfully\e[0m"
+    if [ "$1" -eq 0 ]; then
+    echo -e "\e[1m nginx installation successfully\e[0m"
     else
-    echo "Nginx installation is not completed"
+    echo -e  "\e[1mNginx installation is not completed\e[0m"
     fi
 }
 
