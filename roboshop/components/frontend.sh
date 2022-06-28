@@ -8,7 +8,8 @@ stat(){
     if [ "$1" -eq 0 ]; then
     echo -e "\e[1m success\e[0m" &>>$LOG
     else
-    echo -e  "\e[1m is not completed\e[0m" &>>$LOG
+    echo -e  "\e[1m Failure \e[0m" &>>$LOG
+    exit 1
     fi
 }
  LOG=/tmp/roboshop.log
@@ -26,12 +27,16 @@ print "Starting nginx"
 systemctl start nginx &>>$LOG
 stat $?
 
-exit 1
-
+print "Download HTML pages"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+stat $?
 
-cd /usr/share/nginx/html
-rm -rf *
+print "Remove old HTML Pages"
+rm -rf  /usr/share/nginx/html/* &>>$LOG
+stat $?
+
+
+exit 1
 unzip /tmp/frontend.zip
 mv frontend-main/* .
 mv static/* .
