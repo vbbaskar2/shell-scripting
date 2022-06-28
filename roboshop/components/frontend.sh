@@ -33,11 +33,11 @@ stat $?
 
 
 print "Enabling nginx"
-systemctl enable nginx -y &>>$LOG
+systemctl enable nginx &>>$LOG
 stat $?
 
 print "Starting nginx"
-systemctl start nginx -y &>>$LOG
+systemctl start nginx &>>$LOG
 stat $?
 
 
