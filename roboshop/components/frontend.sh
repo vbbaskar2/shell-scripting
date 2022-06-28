@@ -6,9 +6,9 @@ print(){
 
 stat(){
     if [ "$1" -eq 0 ]; then
-    echo -e "\e[1m $1 successfully\e[0m"
+    echo -e "\e[1m successfully\e[0m"
     else
-    echo -e  "\e[1m $1 is not completed\e[0m"
+    echo -e  "\e[1m is not completed\e[0m"
     fi
 }
 
