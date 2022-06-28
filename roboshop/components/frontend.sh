@@ -44,9 +44,8 @@ print "Copy files to Nginx path"
 mv /tmp/frontend-main/static/* /usr/share/nginx/html/. &>>$LOG
 stat $?
 
-exit 1
-mv static/* .
-rm -rf frontend-master static README.md
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
+print "Copy nginx Conf"
+cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
+stat $?
 
 

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32f88ce2-1d69-488c-960b-bd13a03ea178" name="Changes" comment="modified readme.md file" />
+    <list default="true" id="32f88ce2-1d69-488c-960b-bd13a03ea178" name="Changes" comment="modified readme.md file">
+      <change beforePath="$PROJECT_DIR$/roboshop/components/frontend.sh" beforeDir="false" afterPath="$PROJECT_DIR$/roboshop/components/frontend.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
