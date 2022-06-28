@@ -35,10 +35,15 @@ print "Remove old HTML Pages"
 rm -rf  /usr/share/nginx/html/* &>>$LOG
 stat $?
 
+print "Extracting the archives"
+unzip -o -d/tmp /tmp/frontend.zip &>>$LOG
+stat $?
 
 exit 1
-unzip /tmp/frontend.zip
-mv frontend-main/* .
+print "Copy files to Nginx path"
+mv  .
+stat $?
+
 mv static/* .
 rm -rf frontend-master static README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
