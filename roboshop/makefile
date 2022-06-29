@@ -6,34 +6,34 @@ help:
 git-pull:
     @echo ------pulling-code--------
     @git pull &>/dev/null
-cart: #### setup Cart Component
+cart: git-pull #### setup Cart Component
 	@sudo bash components/cart.sh
 
-catalogue: #### setup catalogue Component
+catalogue: git-pull #### setup catalogue Component
 	@sudo bash components/catalogue.sh
 
-user:  #### setup user Component
+user: git-pull  #### setup user Component
 	@sudo bash bash components/user.sh
 
-shipping: #### setup Shipping Component
+shipping: git-pull #### setup Shipping Component
 	@sudo bash components/shipping.sh
 
-payment: #### setup payment Component
+payment: git-pull #### setup payment Component
 	@sudo bash components/payment.sh
 
-frontend: #### setup frontend Component
+frontend: git-pull #### setup frontend Component
 	@sudo bash components/frontend.sh
 
-mysql:  #### setup mysql Component
+mysql: git-pull  #### setup mysql Component
 	@sudo bash bash components/mysql.sh
 
-redis: #### setup redis Component
+redis: git-pull #### setup redis Component
 	@sudo bash components/redis.sh
 
-rabbitmq: #### setup rabbitmq Component
+rabbitmq: git-pull #### setup rabbitmq Component
 	@sudo bash components/rabbitmq.sh
 
-mongodb: #### setup mongodb Component
+mongodb: git-pull #### setup mongodb Component
 	@sudo bash components/mongodb.sh
 
 ## target
