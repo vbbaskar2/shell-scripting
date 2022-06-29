@@ -44,4 +44,3 @@ stat $?
 
 
 
-aws ec2 run-instances --image-id ami-06eae2586b986c390 --instance-type t3.micro --security-group-ids sg-09b5bda62389f79a2 "ResourceType=instance, Tags=[{key=Name,Value=mongo}]"

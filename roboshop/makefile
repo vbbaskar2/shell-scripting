@@ -2,6 +2,10 @@
 help:
 	@grep '####' makefile | grep -v grep | sed -e 's/####//'
 
+
+git-pull:
+    @echo ------pulling-code--------
+    @git pull &>/dev/null
 cart: #### setup Cart Component
 	@sudo bash components/cart.sh
 
