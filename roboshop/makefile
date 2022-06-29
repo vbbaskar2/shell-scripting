@@ -2,7 +2,7 @@
 help:
 	@grep '####' makefile | grep -v grep | sed -e 's/####//'
 
-git-pull #### setup Cart Component
+git-pull #### Pull the code
 	@git pull &>/dev/null
 
 cart: git-pull #### setup Cart Component
