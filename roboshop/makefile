@@ -6,6 +6,7 @@ help:
 git-pull:
     @echo ------pulling-code--------
     @git pull &>/dev/null
+
 cart: git-pull #### setup Cart Component
 	@sudo bash components/cart.sh
 
