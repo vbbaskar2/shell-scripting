@@ -34,6 +34,6 @@ stat $?
 
 print "Load schema"
 cd "/tmp/mongodb-main"
- mongo < catalogue.js
- mongo < users.js
+ mongo < catalogue.js &>>$LOG
+ mongo < users.js &>>$LOG
 stat $?
