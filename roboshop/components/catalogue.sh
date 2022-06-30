@@ -8,7 +8,12 @@ stat $?
 
 
 print "Add Roboshop user"
-useradd roboshop
+id roboshop &>>$LOG
+if [ $? -eq 0 ]; then
+  echo "User already exists"
+  else
+    useradd roboshop &>>$LOG
+fi
 stat $?
 
 print "Download Schema"
