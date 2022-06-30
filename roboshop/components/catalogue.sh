@@ -17,8 +17,9 @@ stat $?
 
 
 print "Extract schema"
-unzip -o -d /tmp /tmp/catalogue.zip &>>$LOG
+unzip -o -d /home/centos /tmp/catalogue.zip &>>$LOG
 stat $?
+
 
 #print "Copy content"
 # mv catalogue-main catalogue
