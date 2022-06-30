@@ -22,12 +22,14 @@ stat $?
 
 
 print "Extract schema"
-unzip -o -d /home/centos /tmp/catalogue.zip &>>$LOG
+unzip -o -d /home/roboshop /tmp/catalogue.zip &>>$LOG
 stat $?
 
 
-#print "Copy content"
-# mv catalogue-main catalogue
+print "Copy content"
+ mv  /home/roboshop/catalogue-main /home/roboshop/catalogue
+stat $?
+
 #stat $?
 ## cd /home/roboshop/catalogue
 ## npm install
