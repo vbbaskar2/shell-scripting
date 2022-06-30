@@ -10,20 +10,23 @@ print "Install MongoDB"
  sudo yum install -y mongodb-org  &>>$LOG
 stat $?
 
-#sed  -i -e "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$LOG
+print "Update the Mongodb config"
+sed  -i -e "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$LOG
+stat $?
 
 
+print "Enable the Mongodb"
+systemctl enable mongod &>>$LOG
+stat $?
 
-# print "Enable MongoDB"
-# systemctl enable mongod
-# systemctl start mongod
+print "Start Mongodb"
+systemctl start mongod &>>$LOG
+stat $?
 
-# systemctl restart mongod
+DOWNLOAD "/tmp"
 
-# curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
-
-# cd /tmp
-# unzip mongodb.zip
-# cd mongodb-main
-# mongo < catalogue.js
-# mongo < users.js
+print "Load schema"
+cd "/tmp/mongodb-main"
+ mongo < catalogue.js
+ mongo < users.js
+stat $?
