@@ -23,7 +23,14 @@ print "Start Mongodb"
 systemctl start mongod &>>$LOG
 stat $?
 
-DOWNLOAD "/tmp"
+print "Download Schema"
+ curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
+stat $?
+
+print "extract schema"
+unzip -o -d /tmp /tmp/mongodb.zip &>>$LOG
+stat $?
+
 
 print "Load schema"
 cd "/tmp/mongodb-main"
