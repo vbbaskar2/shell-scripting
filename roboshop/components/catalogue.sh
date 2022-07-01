@@ -3,7 +3,7 @@
 source components/common.sh
 
 print "Installing NodeJs"
-yum install nodejs make gcc-c++ -y &>>$LOG
+yum install nodejs npm make gcc-c++ -y &>>$LOG
 stat $?
 
 
