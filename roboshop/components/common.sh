@@ -29,25 +29,25 @@ NODEJS(){
   stat $?
 
   print "Download Schema"
-   curl -s -L -o /tmp/${COMPONENET}.zip "https://github.com/roboshop-devops-project/${COMPONENET}/archive/main.zip" &>>$LOG
+   curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
   stat $?
 
 
 
   print "Extract schema"
-  unzip -o -d /home/roboshop /tmp/${COMPONENET}.zip &>>$LOG
+  unzip -o -d /home/roboshop /tmp/${COMPONENT}.zip &>>$LOG
   stat $?
 
   print "Remove Older schema"
-  rm -rf /home/roboshop/${COMPONENET} &>>$LOG
+  rm -rf /home/roboshop/${COMPONENT} &>>$LOG
   stat $?
 
   print "Copy content"
-   mv  /home/roboshop/${COMPONENET}-main /home/roboshop/${COMPONENET}
+   mv  /home/roboshop/${COMPONENT}-main /home/roboshop/${COMPONENT}
   stat $?
 
   print "install nodejs Dependencies"
-  cd /home/roboshop/${COMPONENET}
+  cd /home/roboshop/${COMPONENT}
   npm install --unsafe-perm &>>$LOG
   stat $?
 
@@ -56,15 +56,15 @@ NODEJS(){
   stat $?
 
   print "Update MongoDB DNS Config"
-  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/roboshop/${COMPONENET}/systemd.service &>>$LOG
+  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>$LOG
   stat $?
 
   print "Copy SystemD file"
-  mv /home/roboshop/${COMPONENET}/systemd.service /etc/systemd/system/${COMPONENET}.service
+  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
   stat $?
 
   print "start Cart service"
-  systemctl daemon-reload &>>$LOG && systemctl start ${COMPONENET} &>>$LOG && systemctl enable ${COMPONENET} &>>$LOG
+  systemctl daemon-reload &>>$LOG && systemctl start ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   stat $?
 }
 
