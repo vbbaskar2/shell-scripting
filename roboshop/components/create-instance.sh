@@ -6,7 +6,7 @@ else
   echo -e "\e[1m $1Instance already exits\e[0m"
 fi
 
-
+sleep 5
 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=$1"  | jq ".Reservations[].Instances[].PrivateIpAddress")
 sed -e "s/DNSNAME/$1.roboshop.internal/" -e "s/IPADDRESS/${IP}" record.json > /tmp/record.json
 aws route53 change-resource-record-sets --hosted-zone-id Z0181693TYNQ0481BBOJ --change-batch file:///tmp/record.json | jq &>/dev/null
