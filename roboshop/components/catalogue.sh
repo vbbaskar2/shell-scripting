@@ -36,7 +36,7 @@ stat $?
 
 print "install nodejs Dependencies"
 
-npm install $>>$LOG
+npm install &>>$LOG
 stat $?
 
 #
