@@ -11,7 +11,7 @@ yum-config-manager --enable remi &>>$LOG
 stat $?
 
 print "Install Redis Repo"
-yum install redis -y
+yum install redis -y &>>$LOG
 stat &?
 
 print "Update Redis Address"
@@ -19,5 +19,5 @@ sed  -i -e "s/127.0.0.1/0.0.0.0/g" /etc/redis.conf /etc/redis/redis.conf  &>>$LO
 stat $?
 
 print "Start and Enable DB"
-start Redis Database && systemctl enable redis && systemctl start redis
+systemctl enable redis && systemctl start redis
 stat $?
