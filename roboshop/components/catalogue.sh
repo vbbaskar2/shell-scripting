@@ -21,18 +21,24 @@ print "Download Schema"
 stat $?
 
 
+
 print "Extract schema"
 unzip -o -d /home/roboshop /tmp/catalogue.zip &>>$LOG
 stat $?
 
+print "Remove Older schema"
+rm -rf /home/roboshop/catalogue &>>$LOG
+stat $?
 
 print "Copy content"
  mv  /home/roboshop/catalogue-main /home/roboshop/catalogue
 stat $?
 
-#stat $?
-## cd /home/roboshop/catalogue
-## npm install
+print "install nodejs Dependencies"
+
+npm install $>>$LOG
+stat $?
+
 #
 ##mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 ## systemctl daemon-reload
