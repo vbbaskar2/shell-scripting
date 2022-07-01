@@ -17,7 +17,7 @@ fi
 stat $?
 
 print "Download Schema"
- curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>$LOG
+ curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>$LOG
 stat $?
 
 
