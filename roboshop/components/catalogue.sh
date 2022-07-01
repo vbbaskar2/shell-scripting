@@ -35,7 +35,7 @@ print "Copy content"
 stat $?
 
 print "install nodejs Dependencies"
-
+cd /home/roboshop/catalogue
 npm install &>>$LOG
 stat $?
 
