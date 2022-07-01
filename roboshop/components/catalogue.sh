@@ -39,7 +39,10 @@ cd /home/roboshop/catalogue
 npm install --unsafe-perm &>>$LOG
 stat $?
 
-#
+print "Fix APP permissions"
+chown -R roboshop:roboshop /home/roboshop
+stat $?
+
 ##mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 ## systemctl daemon-reload
 ## systemctl start catalogue
