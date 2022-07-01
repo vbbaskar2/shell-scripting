@@ -52,5 +52,5 @@ mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.servic
 stat $?
 
 print "start catalogue service"
-systemctl daemon-reload && systemctl start catalogue && systemctl enable catalogue
+systemctl daemon-reload &>>$LOG && systemctl start catalogue &>>$LOG && systemctl enable catalogue &>>$LOG
 stat $?
