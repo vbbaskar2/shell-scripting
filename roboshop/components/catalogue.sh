@@ -44,7 +44,7 @@ chown -R roboshop:roboshop /home/roboshop
 stat $?
 
 print "Updata MongoDB DNS Config"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal' /home/roboshop/catalogue/catalogue.service &>>$LOG
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/catalogue.service &>>$LOG
 stat $?
 
 print "Copy SystemD file"
