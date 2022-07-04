@@ -17,6 +17,8 @@ source components/common.sh
 #    fi
 #}
 
+ LOG=/tmp/roboshop.log
+ rm -f $LOG
 
   print "Installing NodeJs"
   yum install nodejs npm make gcc-c++ -y &>>$LOG
