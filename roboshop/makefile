@@ -11,8 +11,8 @@ cart: git-pull #### setup Cart Component
 catalogue: git-pull #### setup catalogue Component
 	@sudo bash components/catalogue.sh
 
-user: git-pull  #### setup user Component
-	@sudo bash bash components/user.sh
+user: git-pull #### setup catalogue Component
+	@sudo bash components/user.sh
 
 shipping: git-pull #### setup Shipping Component
 	@sudo bash components/shipping.sh
