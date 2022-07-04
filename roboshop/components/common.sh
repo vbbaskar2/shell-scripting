@@ -29,25 +29,25 @@ NODEJS(){
   stat $?
 
   print "Download Schema"
-   curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
+   curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>$LOG
   stat $?
 
 
 
   print "Extract schema"
-  unzip -o -d /home/roboshop /tmp/${COMPONENT}.zip &>>$LOG
+  unzip -o -d /home/roboshop /tmp/user.zip &>>$LOG
   stat $?
 
   print "Remove Older schema"
-  rm -rf /home/roboshop/${COMPONENT} &>>$LOG
+  rm -rf /home/roboshop/user &>>$LOG
   stat $?
 
   print "Copy content"
-   mv  /home/roboshop/${COMPONENT}-main /home/roboshop/${COMPONENT}
+   mv  /home/roboshop/user-main /home/roboshop/user
   stat $?
 
   print "install nodejs Dependencies"
-  cd /home/roboshop/${COMPONENT}
+  cd /home/roboshop/user
   npm install --unsafe-perm &>>$LOG
   stat $?
 
@@ -56,15 +56,15 @@ NODEJS(){
   stat $?
 
   print "Update MongoDB DNS Config"
-  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>$LOG
+  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/roboshop/user/systemd.service &>>$LOG
   stat $?
 
   print "Copy SystemD file"
-  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+  mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
   stat $?
 
-  print "start ${COMPONENT} service"
-  systemctl daemon-reload &>>$LOG && systemctl start ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+  print "start user service"
+  systemctl daemon-reload &>>$LOG && systemctl start user &>>$LOG && systemctl enable user &>>$LOG
   stat $?
 }
 
