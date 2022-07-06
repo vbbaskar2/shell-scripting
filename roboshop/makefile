@@ -1,39 +1,44 @@
-#!/bin/bash
 help:
-	@grep '####' makefile | grep -v grep | sed -e 's/####//'
+	@IFS=$$'\n' ; \
+        help_lines=(`fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//'`); \
+        for help_line in $${help_lines[@]}; do \
+            IFS=$$'#' ; \
+            help_split=($$help_line) ; \
+            help_command=`echo $${help_split[0]} | sed -e 's/^ *//' -e 's/ *$$//'` ; \
+            help_info=`echo $${help_split[2]} | sed -e 's/^ *//' -e 's/ *$$//'` ; \
+            printf "%-15s %s\n" $$help_command $$help_info ; \
+        done
 
-git-pull: #### Pull the code
+git-pull:
+	@echo -------+ Pulling Git Code +--------
 	@git pull &>/dev/null
 
-cart: git-pull #### setup Cart Component
+cart: git-pull ## Setup Cart Component
 	@sudo bash components/cart.sh
 
-catalogue: git-pull #### setup catalogue Component
+catalogue: git-pull ## Setup Catalogue Component
 	@sudo bash components/catalogue.sh
 
-user: git-pull #### setup user Component
+user: git-pull ## Setup User Component
 	@sudo bash components/user.sh
 
-shipping: git-pull #### setup Shipping Component
+shipping: git-pull ## Setup Shipping Component
 	@sudo bash components/shipping.sh
 
-payment: git-pull #### setup payment Component
+payment: git-pull ## Setup Payment Component
 	@sudo bash components/payment.sh
 
-frontend: git-pull #### setup frontend Component
+frontend: git-pull ## Setup Frontend Component
 	@sudo bash components/frontend.sh
 
-mysql: git-pull  #### setup mysql Component
-	@sudo bash bash components/mysql.sh
+mysql: git-pull ## Setup MySQL Component
+	@sudo bash components/mysql.sh
 
-redis: git-pull #### setup redis Component
+redis: git-pull ## Setup Redis Component
 	@sudo bash components/redis.sh
 
-rabbitmq: git-pull #### setup rabbitmq Component
+rabbitmq: git-pull ## Setup RabbitMQ Component
 	@sudo bash components/rabbitmq.sh
 
-mongodb: git-pull #### setup mongodb Component
+mongodb: git-pull ## Setup MongoDB Component
 	@sudo bash components/mongodb.sh
-
-## target
-    ## rules

@@ -1,23 +1,26 @@
 #!/bin/bash
 
 source components/common.sh
+MSPACE=$(cat $0 | grep ^Print | awk -F '"' '{print $2}' | awk '{ print length }' | sort | tail -1)
 
-print "Install Redis Repos"
-yum install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm yum-utils -y &>>$LOG
-stat $?
+Print "Install Redis Repos"
+yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y &>>$LOG
+Stat $?
 
-print "Enable Redis Repo"
+Print "Enable Redis Repos"
 yum-config-manager --enable remi &>>$LOG
-stat $?
+Stat $?
 
-print "Install Redis Repo"
+Print "Install Redis"
 yum install redis -y &>>$LOG
-stat &?
+Stat $?
 
-print "Update Redis Address"
-sed  -i -e "s/127.0.0.1/  0.0.0.0/g" /etc/redis.conf /etc/redis/redis.conf  &>>$LOG
-stat $?
 
-print "Start and Enable DB"
-systemctl enable redis && systemctl start redis
-stat $?
+Print "Update Redis Listen Address"
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>$LOG
+Stat $?
+
+
+Print "Start Redis Database"
+systemctl enable redis &>>$LOG && systemctl restart redis &>>$LOG
+Stat $?
