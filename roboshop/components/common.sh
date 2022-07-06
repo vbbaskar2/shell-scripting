@@ -1,72 +1,69 @@
-#!/bin/bash
-print(){
-  echo -e  "\e[1;32m $1\e[0m"
+Print() {
+  echo -e  "\e[1;32m $1\e[0m" &>>$LOG
 }
 
-stat(){
-    if [ "$1" -eq 0 ]; then
-    echo -e "\e[1;31m success\e[0m"
-    else
-    echo -e  "\e[;33m Failure \e[0m"
-    echo -e "Script failed go and check the log file"
+Stat() {
+  if [ $1 -eq 0 ]; then
+    echo -e "\e[1;32mSUCCESS\e[0m"
+  else
+    echo -e "\e[1;31mFAILURE\e[0m"
+    echo -e "\e[1;33mScript Failed and check the detailed log in $LOG file\e[0m"
     exit 1
-    fi
+  fi
 }
 
-NODEJS(){
-  print "Installing NodeJs"
-  yum install nodejs npm make gcc-c++ -y &>>$LOG
-  stat $?
+LOG=/tmp/roboshop.log
+rm -f $LOG
 
+NODEJS() {
+  Print "Install NodeJS"
+  yum install nodejs make gcc-c++ -y  &>>$LOG
+  Stat $?
 
-  print "Add Roboshop user"
+  Print "Add RoboShop User"
   id roboshop &>>$LOG
   if [ $? -eq 0 ]; then
-    echo "User already exists"
-    else
-      useradd roboshop &>>$LOG
+    echo User RoboShop already exists &>>$LOG
+  else
+    useradd roboshop  &>>$LOG
   fi
-  stat $?
+  Stat $?
 
-  print "Download Schema"
-   curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>$LOG
-  stat $?
+  Print "Download $COMPONENT_NAME"
+  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
+  Stat $?
 
+  Print "Remove Old Content"
+  rm -rf /home/roboshop/${COMPONENT}
+  Stat $?
 
+  Print "Extract $COMPONENT_NAME Content"
+  unzip -o -d /home/roboshop /tmp/${COMPONENT}.zip &>>$LOG
+  Stat $?
 
-  print "Extract schema"
-  unzip -o -d /home/roboshop /tmp/user.zip &>>$LOG
-  stat $?
+  Print "Copy Content"
+  mv /home/roboshop/user-main /home/roboshop/${COMPONENT}
+  Stat $?
 
-  print "Remove Older schema"
-  rm -rf /home/roboshop/user &>>$LOG
-  stat $?
-
-  print "Copy content"
-   mv  /home/roboshop/user-main /home/roboshop/user
-  stat $?
-
-  print "install nodejs Dependencies"
-  cd /home/roboshop/user
+  Print "Install NodeJS dependencies"
+  cd /home/roboshop/${COMPONENT}
   npm install --unsafe-perm &>>$LOG
-  stat $?
+  Stat $?
 
-  print "Fix APP permissions"
+  Print "Fix App Permissions"
   chown -R roboshop:roboshop /home/roboshop
-  stat $?
+  Stat $?
 
-  print "Update MongoDB DNS Config"
-  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/roboshop/user/systemd.service &>>$LOG
-  stat $?
+  Print "Update DNS records in SystemD config"
+  sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service   &>>$LOG
+  Stat $?
 
-  print "Copy SystemD file"
-  mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
-  stat $?
+  Print "Copy SystemD file"
+  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+  Stat $?
 
-  print "start user service"
-  systemctl daemon-reload &>>$LOG && systemctl start user &>>$LOG && systemctl enable user &>>$LOG
-  stat $?
+  Print "Start ${COMPONENT_NAME} Service"
+  systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+  Stat $?
+
 }
-
- LOG=/tmp/roboshop.log
- rm -f $LOG
