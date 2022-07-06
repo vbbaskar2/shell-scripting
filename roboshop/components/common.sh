@@ -109,7 +109,7 @@ MAVEN() {
 
 NODEJS() {
   Print "Install NodeJS"
-  yum install nodejs make gcc-c++ -y  &>>$LOG
+  yum install nodejs npm make gcc-c++ -y  &>>$LOG
   Stat $?
 
   ROBOSHOP_USER
